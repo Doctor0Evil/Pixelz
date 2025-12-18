@@ -1,0 +1,57 @@
+; ============================================================
+; PIXELZ :: BCI-FRIENDLY PIXEL ART EDITOR (UNREAL/UNITY/GODOT)
+; Sanitized, youth-accessible, fatigue-only BCI integration
+; ============================================================
+aln OBJECTDEF pixelz.app
+    field name           "Pixelz"
+    field purpose        "BCI-friendly pixel-art editor for youth and accessibility users."
+    field license        "Apache-2.0"
+    field engines        [ "Unreal","Unity","Godot" ]
+    field input_modes    [ "Mouse","Touch","BCI-FatigueIndex","Keyboard" ]
+    field safety_profile "No motor control; visuals-only; gameplay + art only."
+END
+
+aln OBJECTDEF pixelz.canvas
+    field width_px    64
+    field height_px   64
+    field layers      4
+    field color_depth 32
+    field storage     "C:/assets/game_dev/pixelz/canvas/"
+END
+
+; ------------------------------------------------------------
+; BCI BINDING (FATIGUE-ONLY, NO MOTOR OUTPUT)
+; ------------------------------------------------------------
+aln MODULE pixelz.bci_binding
+    meta.scope "EEG alpha/beta → fatigue-only; no cursor/motor control."
+
+    FUNCTION fatigue_to_tool
+        param fatigue_index "float, 0.0 (rested) .. 1.0 (fatigued)"
+
+        step "Clamp fatigue_index to [0.0,1.0] for safety."
+        step "If fatigue_index < 0.33: activate high-precision brush, slow UI animations."
+        step "If 0.33 <= fatigue_index < 0.66: activate medium brush, enable guided tutorials."
+        step "If fatigue_index >= 0.66: switch to low-demand mini-games, autosave canvas, show break prompts."
+        step "Never map fatigue_index to cursor, click, or any motor-control output."
+    END
+ENDMODULE
+
+; ------------------------------------------------------------
+; ENGINE ADAPTER STUBS (NON-MOTOR BCI HOOKS)
+; ------------------------------------------------------------
+aln MODULE pixelz.engine_adapters
+    FUNCTION unreal_bind_bci
+        step "Expose fatigue_index as a Blueprint float parameter."
+        step "Route to UI material parameters and tool-mode state only."
+    END
+
+    FUNCTION unity_bind_bci
+        step "Expose fatigue_index via C# scriptable object."
+        step "Drive tool selection and tutorial pacing—not input axes."
+    END
+
+    FUNCTION godot_bind_bci
+        step "Expose fatigue_index as a global GDScript singleton property."
+        step "Bind to scene difficulty and hint frequency only."
+    END
+ENDMODULE
