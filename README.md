@@ -1,366 +1,88 @@
-# ALN Blockchain – Augmented User Architecture
+![ALN Compliance Charter](https://img.shields.io/badge/ALN%20Compliance-Enforced-brightgreen)
+![KYC/DID Verified](https://img.shields.io/badge/KYC%20Verified-DID%20Required-blue)
+![Immutable Ledger](https://img.shields.io/badge/Ledger-Blockchain%20Secured-orange)
+![Audit-Ready](https://img.shields.io/badge/Audit-Continuous%20Monitoring-yellow)
+![Neural Networking Supported](https://img.shields.io/badge/Neural%20Networking-Supported-brightgreen)
+![BCI-Devices Ready](https://img.shields.io/badge/BCI%20Devices-Integrated-blueviolet)
+![Asset-Backed](https://img.shields.io/badge/Asset%20Backed-Terra%20Blockchain-lightgrey)
 
-## Executive Summary
+# Pixelz 🎨
 
-ALN is a **compliance-first, security-native blockchain language and platform** designed to:
-- Automatically enforce security and fairness at the protocol level
-- Gate token creation through malware detection and compliance policies
-- Model ALN tokens as stable $1.00-equivalent credits backed by diversified reserves
-- Provide non-transferable reputation and DID-linked good-deed records
-- Enable augmented-user energy accounting and capability control
-- Support Canto migration with malware hardening
-- Integrate with Unreal Engine for game-based augmentation UX
-
----
-
-## Architecture Overview
-
-### Core Modules
-
-1. **Compliance Routing** (`aln/compliance_routing/`)
-   - Maps op_codes to required jurisdiction tags and policies
-   - Enforces JFMIP-24-01 and other compliance policies
-   - Auto-refactors unsafe patterns (honeypots, drainers)
-
-2. **Security & Malware** (`aln/security/`)
-   - Taxonomy: ransomware, keylogger, drainer, phishing, supply_chain, logic_timebomb
-   - ML threat hooks: signature loading, payload scoring, policy updates
-   - Quarantine workflow for flagged contracts
-
-3. **Token Creation Pipeline** (`aln/token_creation/`)
-   - Phases: submit_blueprint → analyze_and_refactor → review → approve_or_reject → deploy
-   - Enforces prepaid ALN fees (from `ALN_TREASURY_ADDRESS`)
-   - Rejects impersonation, blocks malicious patterns
-
-4. **Stability & Reserve** (`aln/stability/`)
-   - Diversified backing: BTC (40%), USD basket (30%), EUR (15%), JPY (10%), GBP (5%)
-   - Commit-reveal rebalancing with TWAP anti-front-run guards
-   - Proof-of-reserve publishing (Merkle tree + signed attestation)
-
-5. **Canto Migration** (`aln/migration/`)
-   - Ingests Canto contracts via RPC
-   - Analyzes for malware and compliance
-   - Generates ALN-native adapters with hardened security
-
-6. **Reputation & Credit** (`aln/reputation/`)
-   - Non-transferable `GoodDeedRecord` linked to DIDs
-   - Transparent reputation scoring (positive/negative events)
-   - Appeal workflow with human-rights safeguards
-
-7. **Energy & Web5** (`aln/energy/`)
-   - Personal energy state (cognitive/physical levels, grid draw)
-   - Grid allocation fairness (max 10% per actor)
-   - Fraud detection and reversal
-
-8. **Augmented Policy Engine** (`aln/augmented_policy/`)
-   - On-chain policy checks: `isActionAllowed(user, action_id, energy_state)`
-   - Capability tiers: BASIC, ADVANCED, LAW_ENF_ASSIST
-   - Reputation and energy budget enforcement
-
-9. **Neuromorphic Adapters** (`aln/neuromorphic/`)
-   - Opt-in sandbox bridge with consent and restricted write paths
-   - Channels: read_telemetry, propose_energy_adjustment, submit_governance_suggestion
-   - Rate-limited, reputation-gated
-
-10. **UE Integration** (`aln/ue_integration/`)
-    - Blueprint/C++ nodes: `GetAugmentedUserPolicy`, `CheckAugmentationActionAllowed`
-    - RPC adapter with 30s caching
-    - Audit transparency UI in Unreal Engine
+Pixelz is a **BCI‑friendly** pixel‑art and animation program designed so children, people with disabilities, and slower‑learners can create, draw, and play with minimal friction and maximum fun.[conversation_history:1] It aims to be the “MS Paint for BCI devices” — free, open‑source, and focused on safe entertainment for everyone.[conversation_history:1]
 
 ---
 
-## Constants & Treasury
+## Why Pixelz?
 
-**Single Source of Truth**: `/aln/core/config/constants.ts`
-
-```typescript
-export const ALN_TREASURY_ADDRESS = 'ALN18sd2ujv24ual9c9pshtxys6j8knh6xaek9z83t';
-export const ALN_TREASURY_LIVE = false; // Reserved until mainnet genesis
-```
-
-**Never hard-code** treasury addresses, gas limits, governance periods, or TPS targets. Import from `constants.ts`.
+- Accessible pixel‑art editor for EEG/BCI devices, eye‑tracking, and traditional inputs (mouse, touch, keyboard).[conversation_history:1]  
+- Built for younger generations, rehabilitation contexts, and users who benefit from simplified, guided interfaces.[conversation_history:1]  
+- Focused on creativity, calm play, and art‑based learning instead of high‑pressure, competitive gameplay.[conversation_history:1]  
 
 ---
 
-## Chat-Native Metadata
+## Core Features
 
-All transactions MAY include optional header fields:
-- `chat_context_id` (UUID, max 36 chars)
-- `transcript_hash` (SHA-256 hex, max 64 chars)
-- `jurisdiction_tags` (array, max 10 from `JURISDICTIONS`)
+- **Pixel‑Art Canvas**  
+  - Small, low‑cognitive‑load canvases (e.g., 16×16, 32×32, 64×64) with layer support.[conversation_history:1]  
+  - Basic tools: pencil, fill, eraser, color picker, simple shapes, onion‑skin animation.[conversation_history:1]  
 
-**Parser warnings** if governance/migration ops lack `chat_context_id` or `transcript_hash`.
+- **BCI‑Aware Interaction**  
+  - Non‑invasive signal mapping (e.g., fatigue/engagement index) to adjust difficulty, hints, and pacing — never direct motor control.[conversation_history:1]  
+  - Gentle session timers and break prompts when cognitive load stays high.[conversation_history:1]  
 
-**State store** captures metadata and appends audit records: `audit:<from>:<timestamp>:<op_code>`.
-
-**Wallet helper**:
-```javascript
-const tx = buildGovernanceVoteTx(voter, proposalId, support, nonce);
-withChatMetadata(tx, { 
-  chat_context_id: uuid, 
-  transcript_hash: hash, 
-  jurisdiction_tags: ['US_federal', 'JFMIP'] 
-});
-```
+- **Guided Play Modes**  
+  - Step‑by‑step drawing helpers, tracing overlays, and “color‑by‑grid” mini‑games for new or slower‑learning artists.[conversation_history:1]  
+  - Kid‑safe defaults: no chats, no ads, no pay‑to‑win, no weaponized content.[conversation_history:1]  
 
 ---
 
-## Token Creation Workflow
+## Safety & Ethics
 
-1. **Submit Blueprint** – Validate structure, check prepaid ALN fee
-2. **Analyze & Refactor** – ML scoring, naming checks, auto-refactor unsafe patterns
-3. **Review** (if needed) – DAO escalation for edge cases
-4. **Approve/Reject** – Emit audit event with reasons
-5. **Deploy** – Deploy transformed contract, emit deployment event
+Pixelz is explicitly **non‑weaponized**, reality‑safe, and intended only for artistic expression, education, and medical/rehab‑friendly play.[conversation_history:1]  
 
-**Tests**: `aln/tests/unit/token_pipeline.test.js`
+- No subliminal stimulation, no invasive control channels, and no unsafe BCI outputs.  
+- Compatible with medical/rehab scenarios for monitoring and gentle adaptation, not diagnosis or treatment decisions.[conversation_history:1]  
 
 ---
 
-## Augmented User Policies (25-Step Model)
+## Tech Overview
 
-### Data Types
-- **AugmentedUserProfile**: `user_did`, `linked_wallets[]`, `augmentation_ids[]`, `jurisdiction_tags[]`, `compliance_mode`
-- **AugmentedEnergyState**: `cognitive_level`, `physical_level`, `grid_power_draw_watts`, `device_ids[]`, `last_update_block`
-- **AugmentedUserPolicy**: `max_grid_draw_watts`, `max_device_class_permitted[]`, `allowed_capability_levels`, `audit_required`, `jurisdiction_constraints[]`
-
-### Capability Tiers
-- **BASIC**: Open to all compliant users
-- **ADVANCED**: Requires `reputation_score >= 50` and zero severe violations
-- **LAW_ENF_ASSIST**: Requires `reputation >= 70`, authority sponsorship, consent, jurisdiction compliance
-
-### Policy Checks (UE Integration)
-1. **GetAugmentedUserPolicy(DID)** → Fetch effective policy
-2. **GetAugmentedEnergyState(DID)** → Current energy levels
-3. **CheckAugmentationActionAllowed(ActionId, User, EnergyState)** → `(allowed, reason)`
-
-### Audit Events
-Every action emits:
-- `user`, `action_id`, `allowed`, `energy_before/after`, `timestamp`, `jurisdiction`, `policy_version`
-
-### Human-Rights Safeguards
-- No opaque social credit penalties
-- Transparent reason codes, appeal hooks
-- Cannot drop capabilities below safe baseline
+- Target engines/runtimes: Unreal, Unity, Godot, plus native desktop builds where applicable.[conversation_history:1]  
+- Intended integration with existing cybernetic/BCI stacks (e.g., AU.ET‑style energy & safety ledgers, secure logging, and audit‑friendly design).[file:3]  
+- Open formats for assets (PNG, simple JSON/ALN scene descriptions) to allow import/export into other creative tools.[conversation_history:1]  
 
 ---
 
-## Reputation System
+## Project Goals
 
-### GoodDeedRecord
-- `user`, `deed_type`, `verifying_authority`, `timestamp`, `jurisdiction`, `evidence_refs[]`
-- Non-transferable, DID-linked
-
-### Reputation Score
-- Formula: `max(10, min(100, positive*10 - negative*20))`
-- Cannot drop below baseline (10)
-
-### Appeals
-- User submits appeal with reason
-- Authority resolves: APPROVED | DENIED
-- Emit transparency event
-
-**Tests**: `aln/tests/unit/augmented_policy.test.js`
-
----
-
-## Canto Migration
-
-1. **Ingest** – Fetch contract from Canto RPC
-2. **Analyze** – Run malware hooks, identify vulnerabilities
-3. **Generate Adapter** – Transform to ALN chainlexeme, apply refactors
-4. **Deploy** – Emit `migration_scan_result` for explorer
-
-**Threat Intel**: Continuously updated from Canto incident data
-
----
-
-## Guardrail Verification
-
-**Run before commit**:
-```powershell
-npm run verify:scaffold
-```
-
-**Checks**:
-- Presence of `AUGMENTED_POLICY.md`, `AUGMENTED_REPUTATION.md`, `LAW_ENF_ASSIST_GUIDE.md`
-- Single-source constants usage
-- Compliance routing files
-- Wallet chat metadata helper
-
----
-
-## Tests
-
-**Run all tests**:
-```powershell
-npm test
-```
-
-**Coverage**:
-- Token pipeline (malicious name/code rejection, auto-refactoring, fee enforcement)
-- Augmented policy (reputation thresholds, energy budgets, capability checks)
-- Parser (module syntax, chat metadata warnings, jurisdiction tag validation)
-
----
-
-## Unreal Engine Integration
-
-**RPC Adapter**: `aln/ue_integration/ue_rpc_adapter.js`
-
-**Blueprint Nodes**:
-- `GetAugmentedUserPolicy(DID)`
-- `GetAugmentedEnergyState(DID)`
-- `CheckAugmentationActionAllowed(ActionId)`
-
-**Example Flow**:
-1. Player activates augmentation (e.g., ENHANCED_VISION)
-2. UE calls `CheckAugmentationActionAllowed`
-3. If denied, display reason and block activation
-4. If allowed, proceed and emit audit event
-
-**Caching**: Policy/energy cached 30s; action checks real-time
-
----
-
-## Neuromorphic Adapters
-
-**Opt-in Bridge** with consent and rate limits:
-- **Read Telemetry** – Privacy-preserving summaries (hashes only)
-- **Propose Energy Adjustment** – Queued for user review, no direct writes
-- **Submit Governance Suggestion** – Reputation-gated, audit logged
-
-**Safety**: No direct state writes, `reputation >= 50` required
-
----
-
-## Stability & Economics
-
-### ALN Token Model
-- **Peg**: $1.00 equivalent credit (not speculative asset)
-- **Backing**: Diversified reserve (BTC + fiat baskets)
-- **Rebalancing**: Commit-reveal every ~1 day, TWAP guards
-
-### Proof-of-Reserve
-- Merkle tree of assets
-- Signed by custodian keys
-- Published on-chain periodically
-
-### Volatility Cap
-- Max deviation: 2% from $1.00
-- Circuit breakers if exceeded
-
----
-
-## Law-Enforcement Assist
-
-**Requirements**:
-- Verified authority credential (DID/VC)
-- Explicit user consent
-- Minimum reputation threshold
-- Jurisdictional compliance flags
-
-**Channels**:
-- Encrypted, pinned-key routing to registered authorities
-- On-chain hash logs (no raw content)
-
-**Tasks**:
-- Authority issues task with `task_id`, `allowed_actions[]`, `reward_model`, `expiry`
-- User accepts/declines
-- Completion updates `GoodDeedRecord` and reputation
-
-**Governance**: Clear boundaries, no hidden surveillance
-
----
-
-## Copilot Guidance
-
-When generating ALN code:
-1. **Import constants** – Never hard-code addresses/limits
-2. **Use chat metadata** – Add `chat_context_id`/`transcript_hash` for governance/migration
-3. **Enforce policies** – Route through compliance_routing
-4. **Test security** – Write tests for malware detection, refactoring
-5. **Audit transparency** – Emit events for all sensitive actions
-6. **Human-rights constraints** – No opaque penalties, allow appeals
-
-**See**: `.github/copilot-instructions.md` for full context
-
----
-
-## Quick Start
-
-1. **Install dependencies** (requires Node.js):
-   ```powershell
-   npm install
-   ```
-
-2. **Verify scaffold**:
-   ```powershell
-   npm run verify:scaffold
-   ```
-
-3. **Run tests**:
-   ```powershell
-   npm test
-   ```
-
-4. **Start node**:
-   ```powershell
-   npm run start:node
-   ```
-
-5. **Start explorer**:
-   ```powershell
-   npm run start:explorer
-   ```
-
-### CLI Transaction Builder
-
-Use the node CLI to craft transactions with mandatory chat metadata and optional custodian-backed signing:
-
-```powershell
-# Transfer with metadata
-aln tx transfer --from <addr> --to <addr> --amount 10 --nonce 0 \
-   --chat-context-id 550e8400-e29b-41d4-a716-446655440000 \
-   --transcript-hash <sha256> --jurisdiction-tags US_federal
-
-# Governance vote
-aln tx governance-vote --from <addr> --proposal gov_001 --support for --nonce 1 \
-   --chat-context-id <uuid> --transcript-hash <sha256>
-
-# Optional encrypted custodian signing
-setx ALN_CUST_PASS "super-secret"
-aln tx transfer ... --custodian-root ./.aln_keys --custodian-label wallet1 --custodian-passphrase-env ALN_CUST_PASS
-```
-
-`KeyCustodian` seals Ed25519 keys with AES-256-GCM + scrypt, so the CLI can sign without exposing raw private material. Metadata flags align with `AugmentedPolicyEngine.validateTransaction`, ensuring governance and migration ops are rejected if context headers are missing.
-
----
-
-## Documentation
-
-- **AUGMENTED_POLICY.md** – Full policy model, capability tiers, enforcement
-- **AUGMENTED_REPUTATION.md** – Reputation formation, safeguards, thresholds
-- **LAW_ENF_ASSIST_GUIDE.md** – Requirements, channels, task workflow
-- **TREASURY.md** – Treasury address, governance, routing purposes
-- **GOVERNANCE.md** – Proposal requirements, voting, execution
-- **TPS_TARGETS.md** – Module-level throughput targets
-- **SECURITY_TPS.md** – Security constraints and TPS engineering
-- **docs/policy_mapping.md** – Mapping of ALN policies to runtime modules, CLI, and tests
-- **docs/ci_checklist.md** – Canonical checklist for CI jobs covering governance, keys, and threat feeds
-
----
-
-## Contributing
-
-1. **Scaffold verification** – Run `npm run verify:scaffold` before commit
-2. **Tests required** – All new features must include Jest tests
-3. **No hard-coded values** – Import from `constants.ts`
-4. **Audit transparency** – Emit events for state changes
-5. **Human-rights compliance** – Design with appeals, transparency, fairness
+- Provide a high‑quality, open pixel‑art studio that BCI users can actually use and enjoy.  
+- Offer a friendly first coding/creative environment for smart‑city, XR, and cybernetic research labs working with children and vulnerable populations.[file:2]  
+- Serve as a reference implementation for safe, non‑invasive BCI entertainment software: deterministic, auditable, and energy‑bounded.[file:3]  
 
 ---
 
 ## License
 
-MIT
+Pixelz is intended to be released under a permissive open‑source license (e.g., Apache‑2.0 or MIT) so schools, clinics, and families can use and extend it freely.[file:2]
+
+---
+
+## Contributing
+
+Contributions are welcome in areas such as:
+
+- Accessibility UX (large icons, simplified flows, screen‑reader‑friendly layouts).[conversation_history:1]  
+- BCI adapters (OpenBCI, LSL bridges) with strict safety constraints.[file:3]  
+- Kid‑friendly templates, sprite packs, and lesson plans for creative learning.[conversation_history:1]  
+
+Before contributing, please:
+
+1. Open an issue describing your idea or fix.  
+2. Make sure any BCI‑related code preserves non‑invasive, medically aligned safety envelopes.  
+3. Follow the code style, testing, and hash‑based blueprint validation patterns used in the broader CEM/Cybercore ecosystem.[file:2][file:3]  
+
+---
+
+## Status
+
+Pixelz is an active, evolving project in the CEM/Cybercore ecosystem, aiming to become a standard open tool for safe, inclusive, BCI‑aware pixel art and animation.[file:2]
